@@ -1,0 +1,38 @@
+TDD:
+How ? Write shell version of code such that could be called in test cases files, now obviously the test cases fail as there is 
+no code. Now you write the code just enough to pass the test cases. 
+Test cases cover all scenarios, such that code coverage is good and business requirements are validated.
+Why ? More efficient approach because, you can run test cases free of charge, without any additional effort.
+Better code in a way, because - you force your code to be better organized such that it's testable,
+You need not write coding for tests, so less rework! As regerssion is built-in, it provides a greater advantage, as we 
+progress and refactor or add more features to our code. And ofcourse fewer bugs, when you have unit test cases.
+Great code coverage.
+
+What is Enzyme?
+Creates Virtual DOM for testing, allows testing without a browser, we need to see how components render,
+Also Enzyme has a better toolkit to test, for example like you can do things like,
+searching through the DOM.
+use jQuery or CSS like selectrs to effectively traverse through the DOM.
+simulate simple events, 
+
+Shallow rendering allows for quicker testing by rendering only one level deep, i.e.,render parent and use palceholders for
+ the childrens and that's how you do it.
+It will render every thing in the parent component that is not a react component.
+so in the render method of a parent component, if you have a react-component, placeholder, children are used for them.
+Mount renders all the children including nested react components.
+
+Here, enzyme provides access to props and state and for both reading and manipulating them.
+
+WE install enzyme by npm install --save-dev enzyme jest-enzyme enzyme-adapter-react-16
+jest-enzyme facilitates communication between jest and enzyme, enzyme adapter library to speak with the specific version of react.
+
+Before enzyme is used, it needs to be setup with the adapter that we just installed,
+
+import Enzyme from 'enzyme';
+import EnzymeAdapter from 'enzyme-adapter-react-16'
+
+Enzyme.configure({ adapter: new EnzymeAdapter()})
+
+and you can use enzyme in the tests in that file.
+
+
