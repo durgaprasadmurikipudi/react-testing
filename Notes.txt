@@ -12,7 +12,7 @@ What is Enzyme?
 Creates Virtual DOM for testing, allows testing without a browser, we need to see how components render,
 Also Enzyme has a better toolkit to test, for example like you can do things like,
 searching through the DOM.
-use jQuery or CSS like selectrs to effectively traverse through the DOM.
+use jQuery or CSS like selectors to effectively traverse through the DOM.
 simulate simple events, 
 
 Shallow rendering allows for quicker testing by rendering only one level deep, i.e.,render parent and use palceholders for
@@ -34,5 +34,60 @@ import EnzymeAdapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new EnzymeAdapter()})
 
 and you can use enzyme in the tests in that file.
+
+When you do a shallow render, the returned wrapper, can print of all the dom in string format, when its debug function is invoked.
+
+Types of tests:
+Unit tests: tests a piece of code, usually a function.
+
+Integration tests:
+tests how multiple untis work together..
+
+Acceptance/ End-to-End tests:
+How a user would interact with app, is achieved by selenium running the app on a browser and testing the app.
+It tests from frontend interactions till database.
+
+Testing goals:
+Maintenance of tests: 
+1. Ideally we should not refactor the tests, when we refactor the code.
+  i.e., We should test for what app does, not how it does, that way when implementation changes, testing remains the same and validates
+  if app functionality is changed because of this change.
+
+  To get a better idea, we have to write tests like this for a sample incrementor example.
+  If whenever click a button and the value displayed on the screens increment by 1 every time, and we want to test it,
+  we write test like 
+  1. set initial state
+  2. simulate button click
+  3. check if the value is incremented
+
+  But testcase is brittle if we write like this,
+  1. set initial state
+  2. simulate button click,
+  3. check if button handler function was invoked, ***** wrong ***** because implementations can change.
+
+  So finally testing tests app behavior not implementation.
+
+2. Easy diagnosis of tests.
+  So you happen to write broader tests testing a piece of functionality so as to not care about the implementaion, then we 
+  are gonna face difficulties when test case fails, we are gonna have to put lot of time in investigating as why the test cases
+  are failing.
+
+  Fo example, if we are writing testing for a shopping cart, and the user actions that are allowed before they are added to cart
+  are 1. pick a t-shirt, pick its size, pick its color, pick the text written on it and then click on add cart.
+  and when this test case fails, by not having the expected items in cart, we are not sure at which step the test case failed.
+
+  So if we have to check the internal state so as to be granular and easy detection of problem, we got to touch the implementation,
+  by checking if a particular function was called to change the internal state for every part of process.
+  But we thought its beter not to tocuh the implementation no ?
+  So here is the deal, a good test case is a trade off between granular unit test case and a broader one (integration).
+
+  Testing is an art, some times you write granular ones, some times you write broader ones and some a trade off!.
+
+  Snapshot tests are  brittle, becuase they wont allow for a minor change to happen. and when these testcase are written by another
+  developer,and when the snapshots tests are failing you often do not know if its a legitimate one or an indication of a problem.
+
+  
+
+   
 
 
