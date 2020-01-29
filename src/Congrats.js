@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React from 'react';
 
 /**
  * export functional component Congrats to show the success message.
@@ -8,10 +8,10 @@ import React, { Component} from 'react';
  */
 
  export default class Congrats extends React.Component {
-   render() {
+   render() {     
     return (
-      <div>
- 
+      <div data-test="congrats-component">
+        {this.props.success ? <span data-test="congrats-message">Congratulations!!!</span> : null}
       </div>
     )
    }

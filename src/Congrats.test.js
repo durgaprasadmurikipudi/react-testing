@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Congrats from './Congrats';
 import { setup, findByTestAttr } from '../test/test-utils';
 
@@ -10,13 +8,13 @@ test('renders app without crashing', () => {
 });
 
 test('displays congratulatory message when props is true', () => {
-  const wrapper = setup(Congrats, null, { success: true});
+  const wrapper = setup(Congrats, { success: true});
   const messageText = findByTestAttr(wrapper, 'congrats-message').text();
   expect (messageText.length).toBeGreaterThan(0);
 });
 
 test('displays nothing when props is false', () => {
-  const wrapper = setup(Congrats, null, { success: false});
-  const messageText = findByTestAttr(wrapper, 'congrats-message').text();
-  expect (messageText.length).toBe(0);
+  const wrapper = setup(Congrats, { success: false});
+  const messageElement = findByTestAttr(wrapper, 'congrats-message');
+  expect (messageElement.length).toBe(0);
 });
