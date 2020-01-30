@@ -10,13 +10,9 @@ describe('when no words guessed', () => {
   beforeEach(() => {
     wrapper = setup(GuessedWords, { guessedWords: [] });
   });
-  it('renders without any error', () => {    
-    const component = findByTestAttr(wrapper, 'component-guessed-words');
-    expect(component.length).toBe(1);
-  });
 
-  it('renders instructions to guess a word', () => {
-    const component = findByTestAttr(wrapper, 'component-guessed-instrution');
+  it('renders without any error and also renders instructions to guess a word', () => {
+    const component = findByTestAttr(wrapper, 'component-guessed-instruction');
     expect(component.text().length).toBeGreaterThan(0);
   });
 });
