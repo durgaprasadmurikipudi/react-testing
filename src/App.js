@@ -1,29 +1,16 @@
 import React from "react";
-import Congrats from './Congrats';
-import GuessedWords from './GuessedWords';
+import { connect } from "react-redux";
+
+import Input from "./Input";
+import Congrats from "./Congrats";
+import GuessedWords from "./GuessedWords";
 import "./App.css";
+import { getSecretWord, guessWord } from "./actions";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      counter: 1,
-      error: false
-    };
-  }
-
-  handleDecrement = () => {
-    if (this.state.counter === 0) {
-      this.setState({ error: true });
-      return;
-    }
-    this.setState(state => ({ counter: state.counter - 1 }));
-  };
-
-  render() {
-    return (
-      <div className="container">
-        <div data-test="component-app">
+export class App extends React.Component {
+  
+  /* initialAppContents = (
+    <div data-test="component-app">
           {this.state.error && (
             <p style={{ color: "red" }} data-test="counter-error">
               The counter cannot go below 0
@@ -50,14 +37,34 @@ class App extends React.Component {
             -
           </button>
         </div>
+  ); */
+
+  componentDidMount() {
+    this.props.getTheSecretWord();
+  }
+
+  render() {
+    const { success, guessedWords, guessTheWord } = this.props;
+    return (
+      <div className="container">
         <div>
           <h1>Jotto</h1>
-          <Congrats success={true} />
-          <GuessedWords guessedWords={[ { guessedWord: 'train', matchedLetters: 1}]} />
+          <Congrats success={success} />
+          <Input guessWord={guessTheWord} />
+          <GuessedWords guessedWords={guessedWords} />
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({ success: { success }, guessedWords }) => ({
+  success,
+  guessedWords
+});
+const mapDispatchToProps = dispatch => ({
+  getTheSecretWord: () => dispatch(getSecretWord()),
+  guessTheWord: word => dispatch(guessWord(word))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

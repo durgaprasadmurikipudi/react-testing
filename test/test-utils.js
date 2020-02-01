@@ -1,12 +1,15 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 import rootReducer from '../src/reducers/index';
+import { middlewares } from '../src/configureStore/store';
+
 
 export function getMockStore(initialState) {
-  return createStore(rootReducer, initialState);
+  const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
+  return createStoreWithMiddleware(rootReducer, initialState);
 }
 
 /**

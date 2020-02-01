@@ -15,7 +15,7 @@ const GuessedWords = props => {
       return (
         <tr key={word.guessedWord} data-test="component-guessed-word">
           <td>{word.guessedWord}</td>
-          <td>{word.matchedLetters}</td>
+          <td>{word.letterMatchingCount}</td>
         </tr>
 
       );
