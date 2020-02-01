@@ -86,6 +86,14 @@ Maintenance of tests:
   Snapshot tests are  brittle, becuase they wont allow for a minor change to happen. and when these testcase are written by another
   developer,and when the snapshots tests are failing you often do not know if its a legitimate one or an indication of a problem.
 
+Tests can be be written for connected components or just that components, that we get by explciitly exporting the components,
+Redux docs encourage the independent testing of the connect components, by seperately exporting them.
+Enzyme docs encourage testing the connected components by diving more into shallow components, you will learn more about dive method later on.,
+There are two ways to test the connected components, by using redux-mock-store and by using original store.
+Original store lets you test the actual state changes by components and redux-mock-store lets you test the set of actions generated
+and how many and the order in which they are generated.
+The effective use of them both lets you pinpoint the error or bug if you have and efficient coverage.
+
   
 
    

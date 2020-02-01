@@ -1,6 +1,13 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import { createStore } from 'redux';
+
+import rootReducer from '../src/reducers/index';
+
+export function getMockStore(initialState) {
+  return createStore(rootReducer, initialState);
+}
 
 /**
  * Factory function to create a ShallowWrapper for the AppComponent
