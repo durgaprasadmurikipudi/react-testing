@@ -94,6 +94,57 @@ Original store lets you test the actual state changes by components and redux-mo
 and how many and the order in which they are generated.
 The effective use of them both lets you pinpoint the error or bug if you have and efficient coverage.
 
+On a side note, when we use redux-thunk, we can dispatch multiple actions, we actually get returned a function, 
+we can do whatever we want, not just for the asynchronous calls.
+
+When you test a promise in test then returning it, will make the test case wait till it completes and returns the status 
+whether success/failure depending on promise resolution.
+
+To test the axios calls, you can actually install moxios.
+All you need to do is call moxios.install in beforeEach(test) and moxios.uninstall in afterEach(test).
+This diverts the acxios calls to divert to moxios rather than original destination. 
+Moxios somehows axios itnercepts calls and can respond iwth its repsonse.
+For example you can do  
+const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: secretWord
+      });
+    });
+
+This way you can return the desired response to axios call.
+
+You can mount a componet with shallow provided by Enzyme.
+The wrapper returned by shallow wrapper gives a find helper function, through which we can traverse the dom's
+IT can return the reference to that dom component which matches the selector passed to the helper function.
+You can see the whole dom by calling debug method on it, if it has multiple child componetns you can call dive function
+and go one more level deep and get reference to that child component.
+I amn ot sure how it h=behaves when you have multiple react children.
+You can also get a instance and get reference to props and other stuff.
+
+What's mroe better than getting and setting a state, you can directly call setState and state on the wrapper and have fun!
+The wrapper.state function takes a path to that state variable that you want to get the value for.
+
+If you get a reference to a button kind of thing you can simulate events on it.
+and re-get the reference of the component that you think will change and see if the tests passed. (Y)
+
+You can call the component lifecycle methods also, wrapper.instance().componentDidMount();
+But you got to set the default calling of lifecycle methods of component in enzyme adapter to be false.
+Enzyme.configure({
+  adapter: new EnzymeAdapter(),
+  disableLifecycleMethods: true
+});
+
+You can create a store separately to test it, and get the refernce to the created store and call dispatch methods on it to see how 
+it is being changed.
+
+
+
+
+
+
+
+
   
 
    
