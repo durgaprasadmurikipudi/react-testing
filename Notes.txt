@@ -138,7 +138,25 @@ Enzyme.configure({
 You can create a store separately to test it, and get the refernce to the created store and call dispatch methods on it to see how 
 it is being changed.
 
+How mocking cannot be done if destrucuring is done in imports.
+For example:
+import { useContext } from 'react';
 
+if you do like above in component file, you cannot mock useContext function in test files,
+
+Instead you have to do like this,
+
+Import React from 'react';
+
+const context = React.useContext();
+
+A cool example of the same using React.useState
+const mockFn = jest.fn()
+In test file what you do is, React.useState = jest.fn(() => (['', mockFn]))
+
+Then now you can trigger some event and check if your 'mockFn'
+ has been called or not, and if yes , with what params and so on..
+ And don't foget to simulate an evnt with all the required data like { preventDefault: () => {}}
 
 
 
