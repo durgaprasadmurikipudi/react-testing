@@ -158,7 +158,11 @@ Then now you can trigger some event and check if your 'mockFn'
  has been called or not, and if yes , with what params and so on..
  And don't foget to simulate an evnt with all the required data like { preventDefault: () => {}}
 
+useEffect is not called when we mount with shallow, issue is still runining in github, when it works we can use
+wrapper returned by shallow again, until then use mount.
 
+People call mockFunction.mockClear() to clear any calls made earlier on this function, need to research on this
+to get its usecase clearly.
 
 
 
